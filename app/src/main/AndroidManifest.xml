@@ -17,5 +17,7 @@
         </intent-filter>
     </activity>
     <activity android:name=".controllers.SecondActivity"></activity>
-</application>
+        <activity android:name=".controllers.WelcomeActivity"
+            android:exported = "true"></activity>
+    </application>
 </manifest>

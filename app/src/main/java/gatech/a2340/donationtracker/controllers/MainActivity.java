@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView Info;
     private Button Login;
     private int counter = 5;
+    private Button Cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         Password = (EditText)findViewById(R.id.passwordTextField);
         Info = (TextView)findViewById(R.id.infoTextView);
         Login = (Button)findViewById(R.id.btnLogin);
+        Cancel = (Button)findViewById(R.id.btnCancel);
 
         Info.setText("Number of attempts remaining: 5");
 
@@ -33,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 validate (Name.getText().toString(), Password.getText().toString());
+            }
+        });
+
+        Cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
+                startActivity(intent);
             }
         });
     }

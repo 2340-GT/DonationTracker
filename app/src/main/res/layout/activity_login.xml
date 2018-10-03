@@ -54,11 +54,11 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnRegister"
+        android:id="@+id/btnCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="92dp"
-        android:text="Register"
+        android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -72,7 +72,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Number of incorrect attemps"
-        app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+        app:layout_constraintBottom_toTopOf="@+id/btnCancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
