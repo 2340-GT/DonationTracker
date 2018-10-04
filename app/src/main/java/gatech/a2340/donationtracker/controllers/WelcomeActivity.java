@@ -27,7 +27,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 //        Register.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

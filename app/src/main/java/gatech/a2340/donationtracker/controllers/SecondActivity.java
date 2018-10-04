@@ -36,7 +36,7 @@ public class SecondActivity extends AppCompatActivity {
     public void Logout(){
 //        firebaseAuth.signOut();
         finish();
-        startActivity(new Intent(SecondActivity.this, MainActivity.class));
+        startActivity(new Intent(SecondActivity.this, WelcomeActivity.class));
     }
 
     @Override

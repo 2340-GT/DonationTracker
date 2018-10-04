@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import gatech.a2340.donationtracker.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,8 +16,11 @@ public class MainActivity extends AppCompatActivity {
     private EditText Password;
     private TextView Info;
     private Button Login;
-    private int counter = 5;
     private Button Cancel;
+    private int counter = 5;
+
+
+    //SET TIME TO ENABLE THE LOGIN BUTTON AGAIN
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +52,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void validate(String userName, String userPassword) {
-        if((userName.equals("DucLe")) && (userPassword.equals("2340"))) {
+        if((userName.equals("user")) && (userPassword.equals("password"))) {
             Intent intent = new Intent(MainActivity.this, SecondActivity.class);
             startActivity(intent);
         } else {
             counter--;
 
             Info.setText("Number of attemps " + String.valueOf(counter));
+            Toast.makeText(getApplicationContext(),"Bad Login Attempt",Toast.LENGTH_LONG).show();
+
+
+
 
             if(counter == 0) {
                 Login.setEnabled(false);
