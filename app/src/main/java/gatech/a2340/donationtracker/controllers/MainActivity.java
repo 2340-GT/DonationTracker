@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         } else {
             counter--;
-
             Info.setText("Number of attemps " + String.valueOf(counter));
             Toast.makeText(getApplicationContext(),"Bad Login Attempt",Toast.LENGTH_LONG).show();
 
