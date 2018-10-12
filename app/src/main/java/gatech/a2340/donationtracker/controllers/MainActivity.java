@@ -1,6 +1,7 @@
 package gatech.a2340.donationtracker.controllers;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private Button Login;
     private Button Cancel;
     private int counter = 5;
+    private SharedPreferences prefs;
 
 
     //SET TIME TO ENABLE THE LOGIN BUTTON AGAIN
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        prefs = getSharedPreferences("gatech.a2340.donationtracker.prefs", 0);
         Name = (EditText)findViewById(R.id.emailTextField);
         Password = (EditText)findViewById(R.id.passwordTextField);
         Info = (TextView)findViewById(R.id.infoTextView);
@@ -52,17 +54,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void validate(String userName, String userPassword) {
-        if((userName.equals("user")) && (userPassword.equals("password"))) {
+        String password = prefs.getString(userName, null);
+        if((userName.equals(userName)) && (userPassword.equals(password))) {
             Intent intent = new Intent(MainActivity.this, SecondActivity.class);
             startActivity(intent);
+        } else if (password == null){
+            Toast.makeText(getApplicationContext(),"Wrong user name",Toast.LENGTH_LONG).show();
         } else {
             counter--;
             Info.setText("Number of attemps " + String.valueOf(counter));
             Toast.makeText(getApplicationContext(),"Bad Login Attempt",Toast.LENGTH_LONG).show();
-
-
-
-
             if(counter == 0) {
                 Login.setEnabled(false);
             }

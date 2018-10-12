@@ -16,7 +16,8 @@
         </intent-filter>
     </activity>
     <activity android:name=".controllers.SecondActivity"></activity>
-        <activity android:name=".controllers.MainActivity"
-            android:exported = "true"></activity>
+        <activity android:name=".controllers.MainActivity"></activity>
+        <activity android:name=".controllers.RegisterActivity"
+            android:exported="true"></activity>
     </application>
 </manifest>

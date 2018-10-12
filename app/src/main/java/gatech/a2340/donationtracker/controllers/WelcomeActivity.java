@@ -27,12 +27,12 @@ public class WelcomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        Register.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(WelcomeActivity.this, SecondActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        Register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WelcomeActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
