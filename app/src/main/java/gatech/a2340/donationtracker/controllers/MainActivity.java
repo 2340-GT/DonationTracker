@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import gatech.a2340.donationtracker.R;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText Name;
@@ -55,8 +56,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void validate(String userName, String userPassword) {
         String password = prefs.getString(userName, null);
-        if((userName.equals(userName)) && (userPassword.equals(password))) {
-            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+        System.out.println("------------");
+        System.out.println(password);
+        if((userName.equals(userName)) && (userPassword.equals("null"))) {
+            Intent intent = new Intent(MainActivity.this, RecyclerActivity.class);
             startActivity(intent);
         } else if (password == null){
             Toast.makeText(getApplicationContext(),"Wrong user name",Toast.LENGTH_LONG).show();

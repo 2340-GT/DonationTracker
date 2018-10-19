@@ -16,8 +16,10 @@
         </intent-filter>
     </activity>
     <activity android:name=".controllers.SecondActivity"></activity>
+        <activity android:name=".controllers.RecyclerActivity"></activity>
         <activity android:name=".controllers.MainActivity"></activity>
         <activity android:name=".controllers.RegisterActivity"
             android:exported="true"></activity>
+
     </application>
 </manifest>
