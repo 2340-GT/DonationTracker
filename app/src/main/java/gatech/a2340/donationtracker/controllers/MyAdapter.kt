@@ -31,7 +31,7 @@ class MyAdapter(val items : ArrayList<String>, val context: Context) : RecyclerV
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder?.location?.text = items.get(position)
         holder.location.setOnClickListener {
-            val intent = Intent(this, LocationDetailActivity:: class.java)
+//            val intent = Intent(this, LocationDetailActivity:: class.java)
 
         }
     }
@@ -42,5 +42,5 @@ class MyAdapter(val items : ArrayList<String>, val context: Context) : RecyclerV
 class ViewHolder(view :View) : RecyclerView.ViewHolder(view) {
 
     val location = view.location_item
-    context = view.context
+//    context = view.context
 }

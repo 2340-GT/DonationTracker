@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "52985296904",
+    "firebase_url": "https://donation-tracker-d39d4.firebaseio.com",
+    "project_id": "donation-tracker-d39d4",
+    "storage_bucket": "donation-tracker-d39d4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:52985296904:android:b8f7f9865f5e623c",
+        "android_client_info": {
+          "package_name": "gatech.a2340.donationtracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "52985296904-t04k326hngp7gkb7qd98jq6pn1h71fqh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmz3cSrXhd8-qgJ9Nk79WHnDileaCh93k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
