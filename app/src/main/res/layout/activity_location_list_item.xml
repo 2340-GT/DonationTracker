@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+    android:padding="15dp"
+android:id="@+id/parent_layout">
+
+<TextView
+    android:id="@+id/location_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="The local on 14th"
+    android:backgroundTint="@color/common_google_signin_btn_text_dark"
+    android:textSize="14sp"
+    android:textColor="@color/colorPrimaryDark"
+    />
+
+</RelativeLayout>

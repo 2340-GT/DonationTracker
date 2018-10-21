@@ -13,16 +13,16 @@ def csv_dict_list(variables_file):
 	return dict_list
 
 
-config = {
-    "apiKey" : "api",
-    "authDomain" : "auth",
-    "databaseURL" : "dtb",
-    "projectId": "pjID",
-    "storageBucket" : "sB",
-    "messagingSenderId" : "ID"
-}
-firebase = pyrebase.initialize_app(config)
-db = firebase.database()
+# config = {
+#     "apiKey" : "api",
+#     "authDomain" : "auth",
+#     "databaseURL" : "dtb",
+#     "projectId": "pjID",
+#     "storageBucket" : "sB",
+#     "messagingSenderId" : "ID"
+# }
+# firebase = pyrebase.initialize_app(config)
+# db = firebase.database()
 
 
 
@@ -34,7 +34,7 @@ for location in locations:
 	location['Key'] = location.pop('\xef\xbb\xbfKey')
 	# db.child("locations").push(location,None) 
 
-users = db.child("locations").get()
+# users = db.child("locations").get()
 for user in users.each():
 	print(user.val()['Website']) # users
 

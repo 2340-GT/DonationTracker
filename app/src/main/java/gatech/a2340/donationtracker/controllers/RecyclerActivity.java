@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,31 +23,40 @@ public class RecyclerActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private static final String TAG = "RecyclerActivity";
     private static ArrayList<String> mNames = new ArrayList<>();
+    private static ArrayList<String> mIds = new ArrayList<>();
+    private RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         setContentView(R.layout.activity_locationlist);
-
+        Log.d(TAG, "onCreate: after set content view");
         initLocationNames();
+
     }
 
 
     private void initLocationNames() {
+        Log.d(TAG, "initLocationNames: heree ??");
         mDatabase.child("locations").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d(TAG, "onDataChange: starting query");
                 for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
+                    String id = (String) snapshot1.getKey();
                     for (DataSnapshot snapshot : snapshot1.getChildren()) {
                         String key = snapshot.getKey();
                         if (key.equals("Name")) {
+                            mIds.add(id);
                             String value = (String) snapshot.getValue();
                             mNames.add(value);
+                            Log.d(TAG, "onDataChange: add names");
                         }
                     }
 
                 }
+                Log.d(TAG, "onDataChange: start recycler view");
                 initRecyclerView();
             }
 
@@ -59,10 +69,14 @@ public class RecyclerActivity extends AppCompatActivity {
     }
 
     private void initRecyclerView() {
-        RecyclerView recyclerview = findViewById(R.id.recyclerv_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mNames);
-        recyclerview.setAdapter(adapter);
-        recyclerview.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView = findViewById(R.id.recyclerv_view);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mNames, mIds);
+        mRecyclerView.setAdapter(adapter);
+
+
+
 
     }
 }
