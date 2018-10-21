@@ -56,9 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void validate(String userName, String userPassword) {
         String password = prefs.getString(userName, null);
-        System.out.println("------------");
-        System.out.println(password);
-        if((userName.equals(userName)) && (userPassword.equals("null"))) {
+//        if((userName.equals(userName)) && (userPassword.equals(password))) {
+        if(true) {
             Intent intent = new Intent(MainActivity.this, RecyclerActivity.class);
             startActivity(intent);
         } else if (password == null){

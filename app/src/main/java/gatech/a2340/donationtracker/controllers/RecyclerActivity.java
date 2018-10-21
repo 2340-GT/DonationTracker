@@ -7,17 +7,21 @@ import android.support.v7.widget.RecyclerView;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 
 public class RecyclerActivity extends AppCompatActivity {
-
+    private DatabaseReference mDatabase;
     private static final String TAG = "RecyclerActivity";
     private ArrayList<String> mNames = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         setContentView(R.layout.activity_locationlist);
         initLocationNames();
     }
