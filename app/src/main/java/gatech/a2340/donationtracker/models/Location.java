@@ -6,48 +6,48 @@ import android.os.Parcelable;
 public class Location implements Parcelable {
 
 
-    private double latitude;
-    private double longitude;
+    private double Latitude;
+    private double Longitude;
     private String streetAddress;
-    private String city;
-    private String state;
-    private String zip;
-    private String type;
-    private String phone;
-    private String website;
+    private String City;
+    private String State;
+    private String Zip;
+    private String Type;
+    private String Phone;
+    private String Website;
 
     public  Location() {
 
     }
     public Location(double latitude, double longitude, String streetAddress, String city, String state, String zip, String type, String phone, String website) {
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.Latitude = latitude;
+        this.Longitude = longitude;
         this.streetAddress = streetAddress;
-        this.city = city;
-        this.state = state;
-        this.zip = zip;
-        this.type = type;
-        this.phone = phone;
-        this.website = website;
+        this.City = city;
+        this.State = state;
+        this.Zip = zip;
+        this.Type = type;
+        this.Phone = phone;
+        this.Website = website;
     }
 
     /* **********************
      * Getters and setters
      */
     public double getLatitude() {
-        return latitude;
+        return Latitude;
     }
 
     public void setLatitude(double latitude) {
-        this.latitude = latitude;
+        this.Latitude = latitude;
     }
 
     public double getLongtitude() {
-        return longitude;
+        return Longitude;
     }
 
     public void setLongtitude(double longtitude) {
-        this.longitude = longtitude;
+        this.Longitude = longtitude;
     }
 
     public String getStreetAddress() {
@@ -59,51 +59,51 @@ public class Location implements Parcelable {
     }
 
     public String getCity() {
-        return city;
+        return City;
     }
 
     public void setCity(String city) {
-        this.city = city;
+        this.City = city;
     }
 
     public String getState() {
-        return state;
+        return State;
     }
 
     public void setState(String state) {
-        this.state = state;
+        this.State = state;
     }
 
     public String getZip() {
-        return zip;
+        return Zip;
     }
 
     public void setZip(String zip) {
-        this.zip = zip;
+        this.Zip = zip;
     }
 
     public String getType() {
-        return type;
+        return Type;
     }
 
     public void setType(String type) {
-        this.type = type;
+        this.Type = type;
     }
 
     public String getPhone() {
-        return phone;
+        return Phone;
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        this.Phone = phone;
     }
 
     public String getWebsite() {
-        return website;
+        return Website;
     }
 
     public void setWebsite(String website) {
-        this.website = website;
+        this.Website = website;
     }
 
     /* *********************************
@@ -123,15 +123,15 @@ public class Location implements Parcelable {
      * @param in  the parcel containing the student information
      */
     private Location(Parcel in) {
-        this.latitude = in.readDouble();
-        this.longitude = in.readDouble();
+        this.Latitude = in.readDouble();
+        this.Longitude = in.readDouble();
         this.streetAddress = in.readString();
-        this.city = in.readString();;
-        this.state = in.readString();;
-        this.zip = in.readString();;
-        this.type = in.readString();;
-        this.phone = in.readString();;
-        this.website = in.readString();;
+        this.City = in.readString();;
+        this.State = in.readString();;
+        this.Zip = in.readString();;
+        this.Type = in.readString();;
+        this.Phone = in.readString();;
+        this.Website = in.readString();;
     }
     @Override
     public int describeContents() {
@@ -140,15 +140,15 @@ public class Location implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeDouble(this.latitude);
-        parcel.writeDouble(this.longitude);
+        parcel.writeDouble(this.Latitude);
+        parcel.writeDouble(this.Longitude);
         parcel.writeString(this.streetAddress);
-        parcel.writeString(this.city);
-        parcel.writeString(this.state);
-        parcel.writeString(this.zip);
-        parcel.writeString(this.type);
-        parcel.writeString(this.phone);
-        parcel.writeString(this.website);
+        parcel.writeString(this.City);
+        parcel.writeString(this.State);
+        parcel.writeString(this.Zip);
+        parcel.writeString(this.Type);
+        parcel.writeString(this.Phone);
+        parcel.writeString(this.Website);
     }
 
     /**

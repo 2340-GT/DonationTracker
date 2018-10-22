@@ -4,9 +4,12 @@ import android.content.SharedPreferences
 import android.os.Parcel
 import android.os.Parcelable
 
-class user(val username: String, val password: String, val userType: UserType) : Parcelable {
+class user(val username: String, val password: String, val userType: UserType, val location: String) : Parcelable {
 
-    constructor(): this("","",UserType.ADMIN);
+    constructor(): this("","",UserType.ADMIN,"")
+
+    constructor(username: String, password: String, userType: UserType): this(username,password,userType,"")
+
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString(),
