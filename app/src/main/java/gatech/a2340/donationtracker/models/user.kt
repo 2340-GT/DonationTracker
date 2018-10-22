@@ -5,6 +5,8 @@ import android.os.Parcel
 import android.os.Parcelable
 
 class user(val username: String, val password: String, val userType: UserType) : Parcelable {
+
+    constructor(): this("","",UserType.ADMIN);
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString(),

@@ -6,17 +6,25 @@ import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import gatech.a2340.donationtracker.models.user;
+import gatech.a2340.donationtracker.models.UserType;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import gatech.a2340.donationtracker.R;
 
@@ -78,8 +86,36 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
-                            Intent intent = new Intent(MainActivity.this, RecyclerActivity.class);
-                            startActivity(intent);
+                            final String id = mAuth.getCurrentUser().getUid();
+                            DatabaseReference mdb = FirebaseDatabase.getInstance().getReference();
+                            mdb.child("users").addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    for (DataSnapshot userSnapShop : dataSnapshot.getChildren()) {
+                                        if(userSnapShop.getKey().equals((id))) {
+                                            user retrievedUser = userSnapShop.getValue(user.class);
+                                            Intent intent = null;
+                                            if (retrievedUser.getUserType().getUserTypeId() == 1) {
+                                                intent = new Intent(MainActivity.this, RecyclerActivity.class);
+                                            } else if (retrievedUser.getUserType().getUserTypeId() == 2) {
+                                                // location employee
+                                                intent = new Intent(MainActivity.this, EmployeeDashboardActivity.class);
+                                            } else {
+                                                // admin
+                                                intent = new Intent(MainActivity.this, RecyclerActivity.class);
+                                            }
+                                            startActivity(intent);
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+
                         } else {
                             counter--;
                             Info.setText("Number of attemps " + String.valueOf(counter));
@@ -90,19 +126,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-//        if((userName.equals(userName)) && (userPassword.equals(password))) {
-//        if(true) {
-//            Intent intent = new Intent(MainActivity.this, RecyclerActivity.class);
-//            startActivity(intent);
-//        } else if (password == null){
-//            Toast.makeText(getApplicationContext(),"Wrong user name",Toast.LENGTH_LONG).show();
-//        } else {
-//            counter--;
-//            Info.setText("Number of attemps " + String.valueOf(counter));
-//            Toast.makeText(getApplicationContext(),"Bad Login Attempt",Toast.LENGTH_LONG).show();
-//            if(counter == 0) {
-//                Login.setEnabled(false);
-//            }
-//        }
     }
+
 }
+
