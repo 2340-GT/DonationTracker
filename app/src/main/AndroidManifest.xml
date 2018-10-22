@@ -23,6 +23,8 @@
             android:exported="true"></activity>
         <activity android:name=".controllers.EmployeeDashboardActivity" />
         <activity android:name=".controllers.AddItemActivity" />
+        <activity android:name=".controllers.EmployeeViewItemsActivity" />
+        <activity android:name=".controllers.ItemDetailActivity" />
 
     </application>
 </manifest>

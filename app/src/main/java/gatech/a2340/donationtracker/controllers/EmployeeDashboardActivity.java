@@ -34,6 +34,16 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
 
             }
         });
+
+
+        viewItems.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EmployeeDashboardActivity.this, EmployeeViewItemsActivity.class);
+                intent.putExtra("location", location);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getIncomingIntent() {

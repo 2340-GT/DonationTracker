@@ -10,21 +10,18 @@
         android:id="@+id/button_add_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="42dp"
+        android:layout_marginStart="85dp"
         android:text="Add Item"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_long_description" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/button_cancel"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/text_short_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="19dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/value"
         app:layout_constraintEnd_toEndOf="@+id/short-description"
         app:layout_constraintStart_toEndOf="@+id/short-description"
         app:layout_constraintTop_toBottomOf="@+id/short-description" />
@@ -32,26 +29,26 @@
     <Spinner
         android:id="@+id/spinner_category"
         android:layout_width="216dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/long-description"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/category" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/text_long_description"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="80dp"
         android:layout_marginStart="26dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="26dp"
-        android:layout_marginBottom="29dp"
+        android:layout_marginBottom="30dp"
         android:ems="10"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/button_add_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/long-description" />
+        app:layout_constraintTop_toTopOf="@+id/long-description" />
 
     <TextView
         android:id="@+id/short-description"
@@ -59,9 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="12dp"
         android:text="Short Description"
-        app:layout_constraintBottom_toTopOf="@+id/text_short_description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -70,9 +65,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginTop="18dp"
         android:text="Value"
-        app:layout_constraintBottom_toTopOf="@+id/text_value"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_short_description" />
 
@@ -81,10 +75,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="17dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/category"
         app:layout_constraintStart_toStartOf="@+id/value"
         app:layout_constraintTop_toBottomOf="@+id/value" />
 
@@ -95,18 +88,28 @@
         android:layout_marginBottom="11dp"
         android:text="Category"
         app:layout_constraintBottom_toTopOf="@+id/spinner_category"
-        app:layout_constraintStart_toStartOf="@+id/spinner_category"
-        app:layout_constraintTop_toBottomOf="@+id/text_value" />
+        app:layout_constraintStart_toStartOf="@+id/spinner_category" />
 
     <TextView
         android:id="@+id/long-description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
-        android:layout_marginBottom="9dp"
+        android:layout_marginTop="19dp"
         android:text="More info:"
-        app:layout_constraintBottom_toTopOf="@+id/text_long_description"
         app:layout_constraintStart_toStartOf="@+id/spinner_category"
         app:layout_constraintTop_toBottomOf="@+id/spinner_category" />
+
+    <Button
+        android:id="@+id/button_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="59dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="40dp"
+        android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/text_long_description"
+        app:layout_constraintStart_toEndOf="@+id/long-description" />
 
 </android.support.constraint.ConstraintLayout>

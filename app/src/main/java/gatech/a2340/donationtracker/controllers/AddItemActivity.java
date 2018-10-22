@@ -35,6 +35,7 @@ public class AddItemActivity extends AppCompatActivity {
     private String itemLocation;
 
     private Button addButton;
+    private Button cancelButton;
     private EditText shortDescritionText;
     private EditText valueText;
     private Spinner categorySpinner;
@@ -56,6 +57,7 @@ public class AddItemActivity extends AppCompatActivity {
         mContext = this;
 
         addButton = (Button) findViewById(R.id.button_add_item);
+        cancelButton = (Button) findViewById(R.id.button_cancel);
         shortDescritionText = (EditText) findViewById(R.id.text_short_description);
         valueText = (EditText) findViewById(R.id.text_value);
         categorySpinner = (Spinner) findViewById(R.id.spinner_category);
@@ -87,11 +89,16 @@ public class AddItemActivity extends AppCompatActivity {
                     }
                 });
 
-
             }
         });
 
-
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, EmployeeDashboardActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
