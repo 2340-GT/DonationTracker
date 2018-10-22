@@ -12,7 +12,7 @@ import gatech.a2340.donationtracker.models.user
 import gatech.a2340.donationtracker.models.UserType
 import kotlinx.android.synthetic.main.activity_register.*
 import com.google.firebase.auth.FirebaseAuth
-
+import com.google.firebase.database.FirebaseDatabase
 
 
 class RegisterActivity : AppCompatActivity(){
@@ -24,15 +24,15 @@ class RegisterActivity : AppCompatActivity(){
     private lateinit var cancel: Button
     private lateinit var user: user
     private lateinit var goToLogIn: TextView
-    var prefs_file = "gatech.a2340.donationtracker.prefs"
 
+    private var mAuth: FirebaseAuth? = null
 
 
     override fun onCreate(savedInstanceState : Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-
+        mAuth =  FirebaseAuth.getInstance()
         userName = findViewById<View>(R.id.userEditText) as EditText
         password = findViewById<View>(R.id.passwordEditText) as EditText
         userType = findViewById<View>(R.id.UserTypeSpinner) as Spinner
@@ -51,16 +51,14 @@ class RegisterActivity : AppCompatActivity(){
                 Toast.makeText(this, "Please Enter text in email/password", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-//            val editor = prefs.edit()
-//            editor.putString(user.username, user.password)
-//            editor.commit()
-//            Toast.makeText(applicationContext, "New user has successfully been created", Toast.LENGTH_LONG).show()
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(user.username, user.password).addOnCompleteListener() {
+            mAuth!!.createUserWithEmailAndPassword(user.username, user.password).addOnCompleteListener() {
                 if (!it.isSuccessful) {
                     return@addOnCompleteListener
                 }
                 // else if succesfull
                 Log.d("main", "Successfully created user with uid: $(it.user.id)");
+                val userId = mAuth!!.currentUser!!.uid
+                FirebaseDatabase.getInstance().reference.child("users").child(userId).setValue(user)
             }.addOnFailureListener {
 
             }
