@@ -38,7 +38,6 @@ public class RecyclerActivity extends AppCompatActivity {
 
 
     private void initLocationNames() {
-        Log.d(TAG, "initLocationNames: heree ??");
         mDatabase.child("locations").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

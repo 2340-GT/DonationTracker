@@ -23,8 +23,8 @@ public class LocationDetailActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private static final String TAG = "LocationDetailActivity";
     private static ArrayList<String> mDetails = new ArrayList<>();
-    private String locationId = null;
-    private String locationName = null;
+    private static String locationId;
+    private static String locationName;
     private Button title;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,13 +33,13 @@ public class LocationDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_location_detail);
         title = (Button)findViewById(R.id.location_title);
         getIncomingIntent();
+        Log.d(TAG, "onCreate: " + locationName);
         title.setText(locationName);
         initLocationDetails();
 
     }
 
     private void getIncomingIntent() {
-        Log.d(TAG, "getIncomingIntent: checking for incoming intent");
         if (getIntent().hasExtra("location_id") && getIntent().hasExtra("location_name")) {
             locationId = getIntent().getStringExtra("location_id");
             locationName = getIntent().getStringExtra("location_name");
