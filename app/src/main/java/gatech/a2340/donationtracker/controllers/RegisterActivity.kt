@@ -92,7 +92,7 @@ class RegisterActivity : AppCompatActivity(){
         
 
         register.setOnClickListener{
-            user = user(userName.getText().toString(), password.getText().toString(), userType.getSelectedItem() as UserType)
+            user = user(userName.getText().toString(), password.getText().toString(), userType.selectedItem as UserType)
             if (userName.length() == 0 || password.length() == 0) {
                 Toast.makeText(this, "Please Enter text in email/password", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -101,9 +101,12 @@ class RegisterActivity : AppCompatActivity(){
                 if (!it.isSuccessful) {
                     return@addOnCompleteListener
                 }
-                // else if succesfull
+                // else if successful
                 Log.d("main", "Successfully created user with uid: $(it.user.id)");
                 val userId = mAuth!!.currentUser!!.uid
+                if(user.userType.equals(UserType.LOCATION_EMPLOYEE)) {
+                    user = user(userName.getText().toString(), password.getText().toString(), userType.selectedItem as UserType, employeeLocation.selectedItem as String);
+                }
                 FirebaseDatabase.getInstance().reference.child("users").child(userId).setValue(user)
             }.addOnFailureListener {
 
