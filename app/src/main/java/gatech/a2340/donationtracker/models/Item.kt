@@ -4,23 +4,25 @@ import android.os.Parcel
 import android.os.Parcelable
 import java.util.*
 
-class Item(val timestamp: Date, val Location: Location, val description: String, val value: Double,
+class Item(val timestamp: String, val location: String, val description: String, val longDescription: String, val value: Double,
            val category: ItemType) : Parcelable {
 
-    constructor(): this( Date(),Location(),"",0.0,ItemType.Other);
+    constructor(): this( "","","","",0.0,ItemType.Other);
 
     constructor(parcel: Parcel) : this(
-            parcel.readSerializable() as Date,
-            parcel.readSerializable() as Location,
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
             parcel.readString(),
             parcel.readDouble(),
             parcel.readSerializable() as ItemType
     )
 
     override fun writeToParcel(p: Parcel, p1: Int) {
-        p.writeSerializable(timestamp)
+        p.writeString(timestamp)
+        p.writeString(location)
         p.writeString(description)
-        p.writeString(description)
+        p.writeString(longDescription)
         p.writeDouble(value)
         p.writeSerializable(category)
     }

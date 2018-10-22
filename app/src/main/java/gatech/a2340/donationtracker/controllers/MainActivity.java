@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                                             } else if (retrievedUser.getUserType().getUserTypeId() == 2) {
                                                 // location employee
                                                 intent = new Intent(MainActivity.this, EmployeeDashboardActivity.class);
+                                                intent.putExtra("location", retrievedUser.getLocation());
                                             } else {
                                                 // admin
                                                 intent = new Intent(MainActivity.this, RecyclerActivity.class);
