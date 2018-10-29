@@ -49,6 +49,8 @@ public class EmployeeViewItemsActivity extends AppCompatActivity {
         itemDb.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mIds.clear();
+                mItemNames.clear();
                 for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
                     Item currentItem = snapshot1.getValue(Item.class);
                     String id = (String) snapshot1.getKey();
