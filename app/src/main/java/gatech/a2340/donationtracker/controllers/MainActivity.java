@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                                             user retrievedUser = userSnapShop.getValue(user.class);
                                             Intent intent = null;
                                             if (retrievedUser.getUserType().getUserTypeId() == 1) {
-                                                intent = new Intent(MainActivity.this, RecyclerActivity.class);
+                                                intent = new Intent(MainActivity.this, UserDashboardActivity.class);
                                             } else if (retrievedUser.getUserType().getUserTypeId() == 2) {
                                                 // location employee
                                                 intent = new Intent(MainActivity.this, EmployeeDashboardActivity.class);

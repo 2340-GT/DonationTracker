@@ -25,6 +25,8 @@
         <activity android:name=".controllers.AddItemActivity" />
         <activity android:name=".controllers.EmployeeViewItemsActivity" />
         <activity android:name=".controllers.ItemDetailActivity" />
+        <activity android:name=".controllers.UserDashboardActivity" />
+        <activity android:name=".controllers.SearchItemActivity" />
 
     </application>
 </manifest>

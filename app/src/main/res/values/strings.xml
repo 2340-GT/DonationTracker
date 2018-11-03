@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">DonationTracker</string>
+    <string name="radio_category">Category</string>
+    <string name="radio_name">Name</string>
+    <string name="searchTextField">Search Item</string>
+    <string name="btnSearch">Search</string>
 </resources>
