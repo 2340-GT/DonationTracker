@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import gatech.a2340.donationtracker.R;
 import gatech.a2340.donationtracker.models.Item;
+import me.xdrop.fuzzywuzzy.FuzzySearch;
+import me.xdrop.fuzzywuzzy.model.ExtractedResult;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -132,28 +135,83 @@ public class SearchItemActivity extends AppCompatActivity {
     // get the selected dropdown list value and search text
     public void addListenerOnButton() {
 
-//        btnSubmit.setOnClickListener((View v) -> {
-//            String searchText = searchTextField.getText().toString();
-//            String location = String.valueOf(spinner.getSelectedItem());
-//            int selectedRadioId = radioGroup.getCheckedRadioButtonId();
-//            if (selectedRadioId == 0) {
-//                searchCategory(location);
-//            } else {
-//                searchName();
-//            }
-//        });
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String searchText = searchTextField.getText().toString();
+                String location = String.valueOf(spinner.getSelectedItem());
+
+                List<Item> results = new ArrayList<>();
+
+                int selectedRadioId = radioGroup.getCheckedRadioButtonId();
+                if (selectedRadioId == 0) {
+                    results = searchCategory(searchText, location);
+                } else {
+                    results = searchName(searchText, location);
+                }
+            }
+        });
     }
 
     // search by category
-    public void searchCategory(String location) {
+    public List<Item> searchCategory(String keyword, String location) {
+        List<Item> itemList = new ArrayList<>();
+//        List<String> itemListName = new ArrayList<>();
+
         if (location == "All locations") {
-            System.out.println("hi");
+            mapLocation.forEach((k,v) -> {
+                v.forEach(item -> {
+//                    itemListName.add(item.getDescription());
+                    itemList.add(item);
+                });
+            });
+        } else {
+            mapLocation.get(location).forEach(item -> {
+//                itemListName.add(item.getDescription());
+                itemList.add(item);
+            });
         }
+//        List<ExtractedResult> fuzzySearchResult = FuzzySearch.extractSorted(keyword, itemListName);
+        List<Item> results = itemList.stream()
+                .filter(item -> item.getCategory().equals(keyword))
+                .collect(Collectors.toList());
+//        fuzzySearchResult.stream()
+//                .filter(item -> item.getScore() > 50)
+//                .forEach(item -> {
+//                    Item i = itemList.get(item.getIndex());
+//                    results.add(i);
+//                });
+
+        return results;
     }
 
     // search by name
-    public void searchName() {
+    public List<Item> searchName(String keyword, String location) {
+        List<Item> itemList = new ArrayList<>();
+        List<String> itemListName = new ArrayList<>();
 
+        if (location == "All locations") {
+            mapLocation.forEach((k,v) -> {
+                v.forEach(item -> {
+                    itemListName.add(item.getDescription());
+                    itemList.add(item);
+                });
+            });
+        } else {
+            mapLocation.get(location).forEach(item -> {
+                itemListName.add(item.getDescription());
+                itemList.add(item);
+            });
+        }
+        List<ExtractedResult> fuzzySearchResult = FuzzySearch.extractSorted(keyword, itemListName);
+        List<Item> results = new ArrayList<>();
+        fuzzySearchResult.stream()
+                .filter(item -> item.getScore() > 50)
+                .forEach(item -> {
+                    Item i = itemList.get(item.getIndex());
+                    results.add(i);
+                });
+        return results;
     }
 
 }
