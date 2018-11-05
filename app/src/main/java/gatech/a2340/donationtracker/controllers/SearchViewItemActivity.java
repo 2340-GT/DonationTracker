@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,15 +24,22 @@ import com.google.firebase.database.ValueEventListener;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import gatech.a2340.donationtracker.R;
 import gatech.a2340.donationtracker.models.Item;
+import me.xdrop.fuzzywuzzy.FuzzySearch;
+import me.xdrop.fuzzywuzzy.model.ExtractedResult;
 
-public class EmployeeViewItemsActivity extends AppCompatActivity {
+
+public class SearchViewItemActivity extends AppCompatActivity {
     private DatabaseReference itemDb;
     private String location;
-    private static ArrayList<String> mIds = new ArrayList<>();
-    private static ArrayList<String> mItemNames = new ArrayList<>();
+    private String keyword;
+    private String searchBy;
+    private ArrayList<String> mIds = new ArrayList<>();
+    private ArrayList<String> mItemNames = new ArrayList<>();
     private RecyclerView mRecyclerView;
 
     @Override
@@ -43,25 +51,49 @@ public class EmployeeViewItemsActivity extends AppCompatActivity {
         initItems();
     }
 
-
-
     private void initItems() {
         itemDb.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mIds.clear();
                 mItemNames.clear();
-                for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
-                    Item currentItem = snapshot1.getValue(Item.class);
-                    String id = (String) snapshot1.getKey();
-                    if (currentItem.getLocation().equals(location)) {
-                        mIds.add(id);
-                        mItemNames.add(currentItem.getDescription());
 
+                // Search by category
+                if (searchBy.equals("Category")) {
+                    for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
+                        Item currentItem = snapshot1.getValue(Item.class);
+                        String id = (String) snapshot1.getKey();
+                        String category = currentItem.getCategory().toString();
+
+
+                        if (category.equals(keyword)
+                                && (currentItem.getLocation().equals(location)
+                                || location.equals("All locations"))) {
+                            mIds.add(id);
+                            mItemNames.add(currentItem.getDescription());
+                        }
+                    }
+
+                } else {        // Searcb by name
+                    for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
+                        Item currentItem = snapshot1.getValue(Item.class);
+                        String id = (String) snapshot1.getKey();
+                        String curLocation = currentItem.getLocation();
+                        String itemName = currentItem.getDescription();
+                        if ((curLocation.equals(location) || location.equals("All locations"))
+                                && FuzzySearch.weightedRatio(keyword, itemName) > 60) {
+                            mIds.add(id);
+                            mItemNames.add(itemName);
+                        }
                     }
                 }
-                initRecyclerView();
+                if (mItemNames.isEmpty()) {
+                    Toast.makeText(getApplicationContext(),"Item not found",Toast.LENGTH_LONG).show();
+
+                } else {
+                    initRecyclerView();
                 }
+            }
 
 
             @Override
@@ -76,25 +108,31 @@ public class EmployeeViewItemsActivity extends AppCompatActivity {
         if (getIntent().hasExtra("location")) {
             location = getIntent().getStringExtra("location");
         }
+        if (getIntent().hasExtra("keyword")) {
+            keyword = getIntent().getStringExtra("keyword");
+        }
+        if (getIntent().hasExtra("searchby")) {
+            searchBy = getIntent().getStringExtra("searchby");
+        }
     }
 
     private void initRecyclerView(){
         mRecyclerView = findViewById(R.id.employee_items_recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerViewEmployeeItem adapter = new RecyclerViewEmployeeItem(this, mItemNames, mIds);
+        SearchViewItemActivity.RecyclerViewSearchItem adapter = new SearchViewItemActivity.RecyclerViewSearchItem(this, mItemNames, mIds);
         mRecyclerView.setAdapter(adapter);
     }
 
 
-    public class RecyclerViewEmployeeItem extends RecyclerView.Adapter<RecyclerViewEmployeeItem.ViewHolder> {
+    public class RecyclerViewSearchItem extends RecyclerView.Adapter<SearchViewItemActivity.RecyclerViewSearchItem.ViewHolder> {
 
 
         private ArrayList<String> mIds = new ArrayList<>();
         private ArrayList<String> mItemNames = new ArrayList<>();
         private Context mContext;
 
-        public RecyclerViewEmployeeItem( Context mContext, ArrayList<String> mItemNames, ArrayList<String> mIds) {
+        public RecyclerViewSearchItem( Context mContext, ArrayList<String> mItemNames, ArrayList<String> mIds) {
             this.mIds = mIds;
             this.mItemNames = mItemNames;
             this.mContext = mContext;
@@ -102,14 +140,16 @@ public class EmployeeViewItemsActivity extends AppCompatActivity {
 
         @NonNull
         @Override
-        public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        public SearchViewItemActivity.RecyclerViewSearchItem.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
             View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_employee_location_list_item, viewGroup, false);
-            ViewHolder holder = new ViewHolder(view);
+            SearchViewItemActivity.RecyclerViewSearchItem.ViewHolder holder = new SearchViewItemActivity.RecyclerViewSearchItem.ViewHolder(view);
             return holder;
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
+        public void onBindViewHolder(@NonNull SearchViewItemActivity.RecyclerViewSearchItem.ViewHolder viewHolder, final int i) {
+
+
             viewHolder.itemName.setText(mItemNames.get(i));
 
             viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {

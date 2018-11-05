@@ -27,6 +27,6 @@
         <activity android:name=".controllers.ItemDetailActivity" />
         <activity android:name=".controllers.UserDashboardActivity" />
         <activity android:name=".controllers.SearchItemActivity" />
-
+        <activity android:name=".controllers.SearchViewItemActivity" />
     </application>
 </manifest>

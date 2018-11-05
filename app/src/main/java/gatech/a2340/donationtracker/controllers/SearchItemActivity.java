@@ -1,6 +1,7 @@
 package gatech.a2340.donationtracker.controllers;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.PostProcessor;
 import android.nfc.Tag;
 import android.os.Bundle;
@@ -66,8 +67,7 @@ public class SearchItemActivity extends AppCompatActivity {
         spinner = (Spinner) findViewById(R.id.spinner);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
         radioGroup = (RadioGroup) findViewById(R.id.radiogroup);
-        System.out.println("start here--------------------------------------------------------------------------------------------------");
-
+        searchTextField = (EditText) findViewById(R.id.searchTextField);
         onChangeDatabase();
 
 
@@ -88,10 +88,6 @@ public class SearchItemActivity extends AppCompatActivity {
 //                mBodyView.setText(post.body);
                 Map<String, Object> rawData = (Map<String, Object>) dataSnapshot.getValue();
                 for (DataSnapshot dsp : dataSnapshot.getChildren()) {
-                    System.out.println("------------------------------" + dsp.getValue(Item.class));
-//                    for (DataSnapshot d : dsp.getChildren()) {
-//                        System.out.println("->>>>>>>>>>>>>>>>>>>" + d);
-//                    }
                     Item item = dsp.getValue(Item.class);
 
                     String category = String.valueOf(item.getCategory());
@@ -122,12 +118,11 @@ public class SearchItemActivity extends AppCompatActivity {
 
     // add items into spinner dynamically
     public void addItemsOnSpinner() {
-        System.out.println("-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + "add Item neeeeeeeeeeeeeeeee");
 
-        List<String> categories = mapCategory.keySet().stream().collect(Collectors.toList());
-        System.out.println("->>>>>>>>>>>>>>>>>>" + categories);
+        List<String> locations = mapLocation.keySet().stream().collect(Collectors.toList());
+        locations.add("All locations");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, categories);
+                android.R.layout.simple_spinner_item, locations);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
     }
@@ -141,77 +136,82 @@ public class SearchItemActivity extends AppCompatActivity {
                 String searchText = searchTextField.getText().toString();
                 String location = String.valueOf(spinner.getSelectedItem());
 
-                List<Item> results = new ArrayList<>();
 
-                int selectedRadioId = radioGroup.getCheckedRadioButtonId();
-                if (selectedRadioId == 0) {
-                    results = searchCategory(searchText, location);
+                if (searchText.isEmpty()) {
+                    Toast.makeText(getApplicationContext(),"Empty Search Keyword",Toast.LENGTH_LONG).show();
+
                 } else {
-                    results = searchName(searchText, location);
+                    String searchBy = (String) ((RadioButton)findViewById(radioGroup.getCheckedRadioButtonId())).getText();
+
+                    Intent intent = new Intent(SearchItemActivity.this, SearchViewItemActivity.class);
+                    intent.putExtra("location", location);
+                    intent.putExtra("keyword", searchText);
+                    intent.putExtra("searchby", searchBy);
+                    startActivity(intent);
                 }
             }
         });
     }
+//
+//    // search by category
+//    public List<Item> searchCategory(String keyword, String location) {
+//        List<Item> itemList = new ArrayList<>();
+////        List<String> itemListName = new ArrayList<>();
+//
+//        if (location == "All locations") {
+//            mapLocation.forEach((k,v) -> {
+//                v.forEach(item -> {
+////                    itemListName.add(item.getDescription());
+//                    itemList.add(item);
+//                });
+//            });
+//        } else {
+//            mapLocation.get(location).forEach(item -> {
+////                itemListName.add(item.getDescription());
+//                itemList.add(item);
+//            });
+//        }
+////        List<ExtractedResult> fuzzySearchResult = FuzzySearch.extractSorted(keyword, itemListName);
+//        List<Item> results = itemList.stream()
+//                .filter(item -> item.getCategory().equals(keyword))
+//                .collect(Collectors.toList());
+////        fuzzySearchResult.stream()
+////                .filter(item -> item.getScore() > 50)
+////                .forEach(item -> {
+////                    Item i = itemList.get(item.getIndex());
+////                    results.add(i);
+////                });
+//
+//        return results;
+//    }
 
-    // search by category
-    public List<Item> searchCategory(String keyword, String location) {
-        List<Item> itemList = new ArrayList<>();
+//    // search by name
+//    public List<Item> searchName(String keyword, String location) {
+//        List<Item> itemList = new ArrayList<>();
 //        List<String> itemListName = new ArrayList<>();
-
-        if (location == "All locations") {
-            mapLocation.forEach((k,v) -> {
-                v.forEach(item -> {
+//
+//        if (location == "All locations") {
+//            mapLocation.forEach((k,v) -> {
+//                v.forEach(item -> {
 //                    itemListName.add(item.getDescription());
-                    itemList.add(item);
-                });
-            });
-        } else {
-            mapLocation.get(location).forEach(item -> {
+//                    itemList.add(item);
+//                });
+//            });
+//        } else {
+//            mapLocation.get(location).forEach(item -> {
 //                itemListName.add(item.getDescription());
-                itemList.add(item);
-            });
-        }
+//                itemList.add(item);
+//            });
+//        }
 //        List<ExtractedResult> fuzzySearchResult = FuzzySearch.extractSorted(keyword, itemListName);
-        List<Item> results = itemList.stream()
-                .filter(item -> item.getCategory().equals(keyword))
-                .collect(Collectors.toList());
+//        List<Item> results = new ArrayList<>();
 //        fuzzySearchResult.stream()
 //                .filter(item -> item.getScore() > 50)
 //                .forEach(item -> {
 //                    Item i = itemList.get(item.getIndex());
 //                    results.add(i);
 //                });
-
-        return results;
-    }
-
-    // search by name
-    public List<Item> searchName(String keyword, String location) {
-        List<Item> itemList = new ArrayList<>();
-        List<String> itemListName = new ArrayList<>();
-
-        if (location == "All locations") {
-            mapLocation.forEach((k,v) -> {
-                v.forEach(item -> {
-                    itemListName.add(item.getDescription());
-                    itemList.add(item);
-                });
-            });
-        } else {
-            mapLocation.get(location).forEach(item -> {
-                itemListName.add(item.getDescription());
-                itemList.add(item);
-            });
-        }
-        List<ExtractedResult> fuzzySearchResult = FuzzySearch.extractSorted(keyword, itemListName);
-        List<Item> results = new ArrayList<>();
-        fuzzySearchResult.stream()
-                .filter(item -> item.getScore() > 50)
-                .forEach(item -> {
-                    Item i = itemList.get(item.getIndex());
-                    results.add(i);
-                });
-        return results;
-    }
+//        return results;
+//    }
 
 }
