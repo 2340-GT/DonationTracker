@@ -106,22 +106,7 @@ public class Location implements Parcelable {
         this.Website = website;
     }
 
-    /* *********************************
-     * These methods are required by the Parcelable interface
-     * I just wanted to demo how to pass information from one activity
-     * to another through an intent.   If this were a real project, I
-     * would probably have the facade maintain information about the
-     * currently selected student which would remove the need to
-     * pass the student object in an intent, which would remove the need
-     * to implement the Parcelable interface and these methods.
-     */
 
-    /**
-     * Constructor used by Parcel to make a new student out of the
-     * parceled information
-     *
-     * @param in  the parcel containing the student information
-     */
     private Location(Parcel in) {
         this.Latitude = in.readDouble();
         this.Longitude = in.readDouble();
@@ -151,10 +136,7 @@ public class Location implements Parcelable {
         parcel.writeString(this.Website);
     }
 
-    /**
-     * Should not have to edit this method if the constructor and write method are
-     * working correctly.
-     */
+
     public static final Parcelable.Creator<Location> CREATOR
             = new Parcelable.Creator<Location>() {
         public Location createFromParcel(Parcel in) {

@@ -13,13 +13,15 @@ class user(val username: String, val password: String, val userType: UserType, v
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString(),
-            parcel.readSerializable() as UserType
+            parcel.readSerializable() as UserType,
+            parcel.readString()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(username)
         parcel.writeString(password)
         parcel.writeSerializable(userType)
+        parcel.writeString(location)
     }
 
     override fun describeContents(): Int {
