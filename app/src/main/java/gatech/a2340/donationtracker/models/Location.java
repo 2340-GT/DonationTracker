@@ -4,7 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Location implements Parcelable {
-
+    private String Key;
+    private String Name;
 
     private double Latitude;
     private double Longitude;
@@ -19,7 +20,9 @@ public class Location implements Parcelable {
     public  Location() {
 
     }
-    public Location(double latitude, double longitude, String streetAddress, String city, String state, String zip, String type, String phone, String website) {
+    public Location(String key, String name, double latitude, double longitude, String streetAddress, String city, String state, String zip, String type, String phone, String website) {
+        this.Key = Key;
+        this.Name = Name;
         this.Latitude = latitude;
         this.Longitude = longitude;
         this.streetAddress = streetAddress;
@@ -34,6 +37,14 @@ public class Location implements Parcelable {
     /* **********************
      * Getters and setters
      */
+    public String getKey() {
+        return Key;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
     public double getLatitude() {
         return Latitude;
     }
@@ -108,6 +119,8 @@ public class Location implements Parcelable {
 
 
     private Location(Parcel in) {
+        this.Key = in.readString();
+        this.Name = in.readString();
         this.Latitude = in.readDouble();
         this.Longitude = in.readDouble();
         this.streetAddress = in.readString();
@@ -125,6 +138,8 @@ public class Location implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(this.Key);
+        parcel.writeString(this.Name);
         parcel.writeDouble(this.Latitude);
         parcel.writeDouble(this.Longitude);
         parcel.writeString(this.streetAddress);
