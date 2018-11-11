@@ -41,11 +41,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:16.0.4'
     implementation 'com.google.android.gms:play-services-maps:11.8.0'
     implementation 'me.xdrop:fuzzywuzzy:1.2.0'
-<<<<<<< HEAD
+
     implementation 'com.google.code.gson:gson:2.8.5'
-=======
     implementation project(':fuzzywuzzy-1.2.0-sources')
 
     testImplementation 'org.mockito:mockito-core:2.19.0'
->>>>>>> a280610a479f46b300bf2c68b433d1c774b6e687
+
 }
