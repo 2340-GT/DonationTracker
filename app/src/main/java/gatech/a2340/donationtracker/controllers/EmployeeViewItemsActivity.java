@@ -53,7 +53,7 @@ public class EmployeeViewItemsActivity extends AppCompatActivity {
                 mItemNames.clear();
                 for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
                     Item currentItem = snapshot1.getValue(Item.class);
-                    String id = (String) snapshot1.getKey();
+                    String id = snapshot1.getKey();
                     if (currentItem.getLocation().equals(location)) {
                         mIds.add(id);
                         mItemNames.add(currentItem.getDescription());

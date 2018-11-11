@@ -32,7 +32,7 @@ public class ItemDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mDatabase = FirebaseDatabase.getInstance().getReference("items");
         setContentView(R.layout.activity_item_detail);
-        title = (Button) findViewById(R.id.item_title);
+        title = findViewById(R.id.item_title);
         getIncomingIntent();
         title.setText(itemName);
         Log.d("why", "onCreate: " + itemId);

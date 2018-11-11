@@ -126,12 +126,12 @@ public class Location implements Parcelable {
         this.Latitude = in.readDouble();
         this.Longitude = in.readDouble();
         this.streetAddress = in.readString();
-        this.City = in.readString();;
-        this.State = in.readString();;
-        this.Zip = in.readString();;
-        this.Type = in.readString();;
-        this.Phone = in.readString();;
-        this.Website = in.readString();;
+        this.City = in.readString();
+        this.State = in.readString();
+        this.Zip = in.readString();
+        this.Type = in.readString();
+        this.Phone = in.readString();
+        this.Website = in.readString();
     }
     @Override
     public int describeContents() {

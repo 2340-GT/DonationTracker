@@ -18,8 +18,8 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        Signin = (Button)findViewById(R.id.btnSignin);
-        Register = (Button)findViewById(R.id.btnCancel);
+        Signin = findViewById(R.id.btnSignin);
+        Register = findViewById(R.id.btnCancel);
 
         Signin.setOnClickListener(new View.OnClickListener() {
             @Override

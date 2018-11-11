@@ -21,8 +21,8 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_dashboard);
-        addItem = (Button)findViewById(R.id.add_item_button);
-        viewItems = (Button) findViewById(R.id.view_items_button);
+        addItem = findViewById(R.id.add_item_button);
+        viewItems = findViewById(R.id.view_items_button);
         getIncomingIntent();
         Log.d("Employee dashboard", "onCreate: " + location);
         addItem.setOnClickListener(new View.OnClickListener() {

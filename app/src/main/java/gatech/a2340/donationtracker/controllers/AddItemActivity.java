@@ -23,10 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import gatech.a2340.donationtracker.models.Item;
 import gatech.a2340.donationtracker.models.ItemType;
-
 import java.util.Date;
-
-
 
 import gatech.a2340.donationtracker.R;
 
@@ -43,7 +40,6 @@ public class AddItemActivity extends AppCompatActivity {
     private Context mContext;
 
     private FirebaseDatabase mDatabase;
-
     private DatabaseReference itemDb;
 
     @Override
@@ -56,18 +52,16 @@ public class AddItemActivity extends AppCompatActivity {
         itemDb = FirebaseDatabase.getInstance().getReference("items");
         mContext = this;
 
-        addButton = (Button) findViewById(R.id.button_add_item);
-        cancelButton = (Button) findViewById(R.id.button_cancel);
-        shortDescritionText = (EditText) findViewById(R.id.text_short_description);
-        valueText = (EditText) findViewById(R.id.text_value);
-        categorySpinner = (Spinner) findViewById(R.id.spinner_category);
-        longDescriptionText = ( EditText) findViewById(R.id.text_long_description);
+        addButton = findViewById(R.id.button_add_item);
+        cancelButton = findViewById(R.id.button_cancel);
+        shortDescritionText = findViewById(R.id.text_short_description);
+        valueText = findViewById(R.id.text_value);
+        categorySpinner = findViewById(R.id.spinner_category);
+        longDescriptionText = findViewById(R.id.text_long_description);
 
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter(mContext, android.R.layout.simple_spinner_item, ItemType.values());
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(categoryAdapter);
-
-
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -24,7 +24,7 @@ public class SecondActivity extends AppCompatActivity {
 
 //        firebaseAuth = FirebaseAuth.getInstance();
 
-        logout = (Button)findViewById(R.id.btnLogout);
+        logout = findViewById(R.id.btnLogout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

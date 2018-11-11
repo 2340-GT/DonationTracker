@@ -48,11 +48,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         prefs = getSharedPreferences("gatech.a2340.donationtracker.prefs", 0);
-        Name = (EditText)findViewById(R.id.emailTextField);
-        Password = (EditText)findViewById(R.id.passwordTextField);
-        Info = (TextView)findViewById(R.id.infoTextView);
-        Login = (Button)findViewById(R.id.btnLogin);
-        Cancel = (Button)findViewById(R.id.btnCancel);
+        Name = findViewById(R.id.emailTextField);
+        Password = findViewById(R.id.passwordTextField);
+        Info = findViewById(R.id.infoTextView);
+        Login = findViewById(R.id.btnLogin);
+        Cancel = findViewById(R.id.btnCancel);
         mAuth = FirebaseAuth.getInstance();
         Info.setText("Number of attempts remaining: 5");
 

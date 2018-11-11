@@ -7,7 +7,7 @@ import java.util.*
 class Item(val timestamp: String, val location: String, val description: String, val longDescription: String, val value: Double,
            val category: ItemType) : Parcelable {
 
-    constructor(): this( "","","","",0.0,ItemType.Other);
+    constructor(): this( "","","","",0.0,ItemType.Other)
 
     constructor(parcel: Parcel) : this(
             parcel.readString(),
@@ -28,7 +28,7 @@ class Item(val timestamp: String, val location: String, val description: String,
     }
 
     override fun describeContents(): Int {
-        return 0;
+        return 0
     }
 
     companion object CREATOR : Parcelable.Creator<Item> {

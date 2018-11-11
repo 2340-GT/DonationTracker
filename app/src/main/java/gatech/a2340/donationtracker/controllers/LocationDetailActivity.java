@@ -31,7 +31,7 @@ public class LocationDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         setContentView(R.layout.activity_location_detail);
-        title = (Button)findViewById(R.id.location_title);
+        title = findViewById(R.id.location_title);
         getIncomingIntent();
         Log.d(TAG, "onCreate: " + locationName);
         title.setText(locationName);

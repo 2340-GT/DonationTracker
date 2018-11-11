@@ -15,9 +15,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
-
 
 public class RecyclerActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
@@ -43,7 +41,7 @@ public class RecyclerActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.d(TAG, "onDataChange: starting query");
                 for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
-                    String id = (String) snapshot1.getKey();
+                    String id = snapshot1.getKey();
                     for (DataSnapshot snapshot : snapshot1.getChildren()) {
                         String key = snapshot.getKey();
                         if (key.equals("Name")) {
@@ -61,10 +59,8 @@ public class RecyclerActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
-
     }
 
     private void initRecyclerView() {

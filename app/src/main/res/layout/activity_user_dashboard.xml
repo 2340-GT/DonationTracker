@@ -36,7 +36,25 @@
         app:layout_constraintRight_toRightOf="parent"
 
         app:layout_constraintTop_toBottomOf="@+id/btnSearchItem"
+        app:layout_constraintBottom_toTopOf="@+id/btnViewMap"
         />
+
+    <Button
+        android:id="@+id/btnViewMap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="View Map"
+        android:layout_marginTop="32dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/btnViewStores"
+        />
+
 
 </android.support.constraint.ConstraintLayout>
 

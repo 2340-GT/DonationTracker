@@ -64,10 +64,10 @@ public class SearchItemActivity extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("items");
 
-        spinner = (Spinner) findViewById(R.id.spinner);
-        btnSubmit = (Button) findViewById(R.id.btnSubmit);
-        radioGroup = (RadioGroup) findViewById(R.id.radiogroup);
-        searchTextField = (EditText) findViewById(R.id.searchTextField);
+        spinner = findViewById(R.id.spinner);
+        btnSubmit = findViewById(R.id.btnSubmit);
+        radioGroup = findViewById(R.id.radiogroup);
+        searchTextField = findViewById(R.id.searchTextField);
         onChangeDatabase();
 
 

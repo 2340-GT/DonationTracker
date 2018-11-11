@@ -14,9 +14,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import android.widget.ArrayAdapter
 
-
-
-
 class RegisterActivity : AppCompatActivity(){
 
     private lateinit var userName: EditText
@@ -73,7 +70,6 @@ class RegisterActivity : AppCompatActivity(){
 //
 //        }
 
-
         userType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
@@ -81,31 +77,29 @@ class RegisterActivity : AppCompatActivity(){
             override fun onItemSelected(p0: AdapterView<*>, p1: View?, p2: Int, p3: Long) {
                 val selectedItem = p0.getItemAtPosition(p2)
                 if (selectedItem.equals(UserType.LOCATION_EMPLOYEE)) {
-                    employeeLocation.isEnabled = true;
+                    employeeLocation.isEnabled = true
                     val adapterEmployee = ArrayAdapter(mContext!!, android.R.layout.simple_spinner_item, locationList.toArray())
                     adapterEmployee.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     employeeLocation.adapter = adapterEmployee
                 }
             }
         }
-            
-        
 
         register.setOnClickListener{
-            user = user(userName.getText().toString(), password.getText().toString(), userType.selectedItem as UserType)
+            user = user(userName.text.toString(), password.text.toString(), userType.selectedItem as UserType)
             if (userName.length() == 0 || password.length() == 0) {
                 Toast.makeText(this, "Please Enter text in email/password", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            mAuth!!.createUserWithEmailAndPassword(user.username, user.password).addOnCompleteListener() {
+            mAuth!!.createUserWithEmailAndPassword(user.username, user.password).addOnCompleteListener {
                 if (!it.isSuccessful) {
                     return@addOnCompleteListener
                 }
                 // else if successful
-                Log.d("main", "Successfully created user with uid: $(it.user.id)");
+                Log.d("main", "Successfully created user with uid: $(it.user.id)")
                 val userId = mAuth!!.currentUser!!.uid
                 if(user.userType.equals(UserType.LOCATION_EMPLOYEE)) {
-                    user = user(userName.getText().toString(), password.getText().toString(), userType.selectedItem as UserType, employeeLocation.selectedItem as String);
+                    user = user(userName.text.toString(), password.text.toString(), userType.selectedItem as UserType, employeeLocation.selectedItem as String)
                 }
                 FirebaseDatabase.getInstance().reference.child("users").child(userId).setValue(user)
             }.addOnFailureListener {
@@ -142,6 +136,6 @@ class RegisterActivity : AppCompatActivity(){
         mLocations!!.addValueEventListener(locationListener)
     }
     private interface FireBaseCallback {
-        fun onCallBack(list:ArrayList<String>);
+        fun onCallBack(list:ArrayList<String>)
     }
 }

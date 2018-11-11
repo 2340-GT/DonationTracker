@@ -62,7 +62,7 @@ public class SearchViewItemActivity extends AppCompatActivity {
                 if (searchBy.equals("Category")) {
                     for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
                         Item currentItem = snapshot1.getValue(Item.class);
-                        String id = (String) snapshot1.getKey();
+                        String id = snapshot1.getKey();
                         String category = currentItem.getCategory().toString();
 
 
@@ -77,7 +77,7 @@ public class SearchViewItemActivity extends AppCompatActivity {
                 } else {        // Searcb by name
                     for (DataSnapshot snapshot1 : dataSnapshot.getChildren()) {
                         Item currentItem = snapshot1.getValue(Item.class);
-                        String id = (String) snapshot1.getKey();
+                        String id = snapshot1.getKey();
                         String curLocation = currentItem.getLocation();
                         String itemName = currentItem.getDescription();
                         if ((curLocation.equals(location) || location.equals("All locations"))
