@@ -41,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
 
-    //SET TIME TO ENABLE THE LOGIN BUTTON AGAIN
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

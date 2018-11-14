@@ -42,22 +42,3 @@ class Item(val timestamp: String, val location: String, val description: String,
     }
 
 }
-
-
-//class user(val username: String, val password: String, val userType: UserType) : Parcelable {
-//
-//    constructor(): this("","",UserType.ADMIN);
-//    constructor(parcel: Parcel) : this(
-//            parcel.readString(),
-//            parcel.readString(),
-//            parcel.readSerializable() as UserType
-//    )
-//
-//    override fun writeToParcel(parcel: Parcel, flags: Int) {
-//        parcel.writeString(username)
-//        parcel.writeString(password)
-//        parcel.writeSerializable(userType)
-//    }
-//
-
-//}

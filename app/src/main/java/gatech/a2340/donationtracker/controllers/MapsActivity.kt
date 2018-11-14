@@ -38,13 +38,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                  for (snapshot1 in dataSnapshot.children) {
                      mMap.addMarker(MarkerOptions().position(LatLng((snapshot1.child("Latitude").value as String).toDouble(), (snapshot1.child("Longitude").value as String).toDouble()))
                                                    .title(snapshot1.child("Name").value as String)
-                                                    .snippet("Phone number: " + snapshot1.child("Phone").value as String))
+                                                   .snippet("Phone number: " + snapshot1.child("Phone").value as String))
                  }
              }
              override fun onCancelled(databaseError: DatabaseError) {
 
              }
-         }) 
-         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(33.753746, -84.386330), 11.0f))
+         })
+         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(33.753746, -84.386330), 11.0f)) //Atlanta coordinates and start zoom
     }
 }

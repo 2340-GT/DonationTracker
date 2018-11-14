@@ -70,9 +70,6 @@ public class ItemDetailActivity extends AppCompatActivity {
 
     }
 
-
-
-
     private void getIncomingIntent() {
         if (getIntent().hasExtra("item_id") && getIntent().hasExtra("item_name")) {
             itemId = getIntent().getStringExtra("item_id");

@@ -43,8 +43,6 @@ public class EmployeeViewItemsActivity extends AppCompatActivity {
         initItems();
     }
 
-
-
     private void initItems() {
         itemDb.addValueEventListener(new ValueEventListener() {
             @Override

@@ -8,5 +8,4 @@ enum class ItemType {
     Electronics(),
     Household(),
     Other()
-
 }

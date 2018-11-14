@@ -95,8 +95,6 @@ public class AddItemActivity extends AppCompatActivity {
         });
     }
 
-
-
     private void getIncomingIntent() {
         if (getIntent().hasExtra("location")) {
             Log.d("getIncoming Intent", "getIncomingIntent: " + "get in here");
