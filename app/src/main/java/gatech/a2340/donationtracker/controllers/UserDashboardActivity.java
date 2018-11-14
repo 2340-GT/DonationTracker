@@ -4,7 +4,6 @@ import android.content.Intent;
 
 import android.support.v7.app.AppCompatActivity;
 
-import gatech.a2340.donationtracker.MapsActivity;
 import gatech.a2340.donationtracker.R;
 import android.os.Bundle;
 
@@ -17,6 +16,7 @@ public class UserDashboardActivity extends AppCompatActivity {
     private Button SearchItem;
     private Button ViewStores;
     private Button ViewMap;
+    private Button LogOut;
 
 
     @Override
@@ -28,6 +28,7 @@ public class UserDashboardActivity extends AppCompatActivity {
         SearchItem = findViewById(R.id.btnSearchItem);
         ViewStores = findViewById(R.id.btnViewStores);
         ViewMap = findViewById(R.id.btnViewMap);
+        LogOut = findViewById(R.id.btnLogOut);
 
         SearchItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +50,14 @@ public class UserDashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserDashboardActivity.this, MapsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        LogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserDashboardActivity.this, WelcomeActivity.class);
                 startActivity(intent);
             }
         });

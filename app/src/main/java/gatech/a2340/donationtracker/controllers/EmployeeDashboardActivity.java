@@ -15,6 +15,7 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
 
     private Button addItem;
     private Button viewItems;
+    private Button LogOut;
     private String location;
 
     @Override
@@ -23,6 +24,7 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_employee_dashboard);
         addItem = findViewById(R.id.add_item_button);
         viewItems = findViewById(R.id.view_items_button);
+        LogOut = findViewById(R.id.btnLogOut);
         getIncomingIntent();
         Log.d("Employee dashboard", "onCreate: " + location);
         addItem.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +43,14 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(EmployeeDashboardActivity.this, EmployeeViewItemsActivity.class);
                 intent.putExtra("location", location);
+                startActivity(intent);
+            }
+        });
+
+        LogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EmployeeDashboardActivity.this, WelcomeActivity.class);
                 startActivity(intent);
             }
         });

@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
 
                         } else {
                             counter--;
-                            Info.setText("Number of attemps " + String.valueOf(counter));
+                            Info.setText("Number of attempts " + String.valueOf(counter));
                             Toast.makeText(getApplicationContext(),"Bad Login Attempt",Toast.LENGTH_LONG).show();
                             if(counter == 0) {
                                 Login.setEnabled(false);

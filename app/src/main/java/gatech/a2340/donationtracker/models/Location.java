@@ -53,12 +53,12 @@ public class Location implements Parcelable {
         this.Latitude = latitude;
     }
 
-    public double getLongtitude() {
+    public double getLongitude() {
         return Longitude;
     }
 
-    public void setLongtitude(double longtitude) {
-        this.Longitude = longtitude;
+    public void setLongitude(double longitude) {
+        this.Longitude = longitude;
     }
 
     public String getStreetAddress() {

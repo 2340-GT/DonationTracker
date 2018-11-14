@@ -11,6 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyA3uLpITJlvyWW7k1S0p8eVIgzF4LP2pZg" />
         <activity android:name=".controllers.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,18 +35,8 @@
         <activity android:name=".controllers.UserDashboardActivity" />
         <activity android:name=".controllers.SearchItemActivity" />
         <activity android:name=".controllers.SearchViewItemActivity" />
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyA3uLpITJlvyWW7k1S0p8eVIgzF4LP2pZg" />
-
-        <activity
-            android:name=".controllers.MapsActivity"
-            android:label="Map" />
-        <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
-        <activity android:name="edu.gatech.cs2340.m4solution.controllers.MapsActivity" />
+        <activity android:name=".controllers.MapsActivity" />
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
     </application>
 
 </manifest>

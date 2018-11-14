@@ -59,17 +59,6 @@ class RegisterActivity : AppCompatActivity(){
         adapterStanding.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         userType.adapter = adapterStanding
 
-//        employeeLocation.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onNothingSelected(p0: AdapterView<*>?) {
-//
-//            }
-//
-//            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-//                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//            }
-//
-//        }
-
         userType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
