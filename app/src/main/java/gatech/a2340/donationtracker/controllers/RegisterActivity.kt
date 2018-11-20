@@ -80,11 +80,15 @@ class RegisterActivity : AppCompatActivity(){
                 Toast.makeText(this, "Please Enter text in email/password", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+
             mAuth!!.createUserWithEmailAndPassword(user.username, user.password).addOnCompleteListener {
                 if (!it.isSuccessful) {
+                    Toast.makeText(applicationContext, (it.getException())?.message , Toast.LENGTH_LONG).show()
                     return@addOnCompleteListener
+
                 }
                 // else if successful
+
                 Log.d("main", "Successfully created user with uid: $(it.user.id)")
                 val userId = mAuth!!.currentUser!!.uid
                 if(user.userType.equals(UserType.LOCATION_EMPLOYEE)) {

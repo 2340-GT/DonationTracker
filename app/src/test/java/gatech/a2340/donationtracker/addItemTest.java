@@ -24,7 +24,7 @@ public class addItemTest {
         assertEquals(item.getCategory(), ItemType.Clothing);
         assertEquals(item.getDescription(), "A really good table");
         assertEquals(item.getLongDescription(), "A very good table which is barely used.");
-        assertEquals(item.getValue(), 1.0);
+        assertEquals(item.getValue(), 2.0);
         assertNull(item.getTimestamp(), null);
 
 
