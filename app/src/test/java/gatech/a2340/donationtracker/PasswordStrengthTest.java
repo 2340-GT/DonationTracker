@@ -1,3 +1,4 @@
+//Author: Nguyen Nguyen
 package gatech.a2340.donationtracker;
 import org.junit.Test;
 
