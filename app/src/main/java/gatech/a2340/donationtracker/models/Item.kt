@@ -2,7 +2,6 @@ package gatech.a2340.donationtracker.models
 
 import android.os.Parcel
 import android.os.Parcelable
-import java.util.*
 
 class Item(val timestamp: String, val location: String, val description: String, val longDescription: String, val value: Double,
            val category: ItemType) : Parcelable {

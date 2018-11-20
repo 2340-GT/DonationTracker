@@ -80,6 +80,11 @@ class RegisterActivity : AppCompatActivity(){
                 Toast.makeText(this, "Please Enter text in email/password", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            if (user.checkPasswordStrength() <= 1) {
+                Toast.makeText(this, "Please Enter a stronger password", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
 
             mAuth!!.createUserWithEmailAndPassword(user.username, user.password).addOnCompleteListener {
                 if (!it.isSuccessful) {

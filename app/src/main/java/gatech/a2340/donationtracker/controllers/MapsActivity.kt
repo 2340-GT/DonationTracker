@@ -7,11 +7,10 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.database.*
-import gatech.a2340.donationtracker.models.Location
 import gatech.a2340.donationtracker.R
+
 /**
  * Controller for the Map Display.
  */
@@ -27,7 +26,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
                 .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        mDatabase = FirebaseDatabase.getInstance().getReference()
+        mDatabase = FirebaseDatabase.getInstance().reference
     }
     
 
